@@ -15,20 +15,39 @@ class Admin(MethodView):
     
     def get(self):
         api_version = self.client.config['api_version']
+        topics_list = self.client.list_topics()
+        g2_topics_list = []
+        for i in topics_list:
+            if 'g2' in i:
+                g2_topics_list.append(i)
         return jsonify({
             "success": True,
             "api_version":api_version,
-            "created_topics":[]
+            "created_g2_topics":g2_topics_list
         })
     
     def post(self):
-        return jsonify({
-            "success": True,
-            "message": "POST"
-        })
-        
+        try:
+            print(request.json)
+            data = request.json
+            topic_name = data.get('topic_name')
+            if topic_name:
+                return jsonify({ 
+                    "success": True,
+                    "message": "POST"
+                })
+            else:
+                return jsonify({
+                    "success": False,
+                    "message": "Topic name required"
+                })
+        except Exception as e:
+            return jsonify({
+                "success": False,
+                "message": str(e)
+            })
 
-test_get = API.as_view("admin")
+test_get = Admin.as_view("admin")
 app.add_url_rule("/admin", view_func=test_get)
 
 if __name__ == '__main__':
