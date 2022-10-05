@@ -149,9 +149,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 👤 **Gedion Abebe**
 
-- GitHub: [Gedion Abebe](https://github.com/)
-- LinkedIn: [Gedion Abebe](https://www.linkedin.com/in/)
-- Website: [Gedion Abebe Porfolio](http://)
+- GitHub: [Gedion Abebe](https://github.com/gedionabebe)
+- LinkedIn: [Gedion Abebe](https://www.linkedin.com/in/gedion-abebe-489a65152/)
+
 
 👤 **Bekalu Tadele**
 
