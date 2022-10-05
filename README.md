@@ -145,7 +145,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 👤 **Henok Desalegn**
 
 - GitHub: [Henok Desalegn](https://github.com/)
-- LinkedIn: [Henok Desalegn](https://www.linkedin.com/in/)
+- LinkedIn: [Henok Desalegn](https://www.linkedin.com/in/henok-desalegn/)
 - Website: [Henok Desalegn Porfolio](http://)
 
 👤 **Gedion Abebe**
