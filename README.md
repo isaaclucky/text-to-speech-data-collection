@@ -132,9 +132,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 👤 **Natnael Melese**
 
-- GitHub: [Natnael Melese](https://github.com/)
-- LinkedIn: [Natnael Melese](https://www.linkedin.com/in/)
-- Website: [Natnael Melese Porfolio](https://)
+- GitHub: [Natnael Melese](https://github.com/natyrix)
+- LinkedIn: [Natnael Melese](https://www.linkedin.com/in/natnael-melesse-298879196/)
 
 👤 **Yishak Tadele**
 
@@ -145,14 +144,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 👤 **Henok Desalegn**
 
 - GitHub: [Henok Desalegn](https://github.com/)
-- LinkedIn: [Henok Desalegn](https://www.linkedin.com/in/)
+- LinkedIn: [Henok Desalegn](https://www.linkedin.com/in/henok-desalegn/)
 - Website: [Henok Desalegn Porfolio](http://)
 
 👤 **Gedion Abebe**
 
-- GitHub: [Gedion Abebe](https://github.com/)
-- LinkedIn: [Gedion Abebe](https://www.linkedin.com/in/)
-- Website: [Gedion Abebe Porfolio](http://)
+- GitHub: [Gedion Abebe](https://github.com/gedionabebe)
+- LinkedIn: [Gedion Abebe](https://www.linkedin.com/in/gedion-abebe-489a65152/)
+
 
 👤 **Bekalu Tadele**
 
@@ -162,14 +161,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 👤 **Adijat Ojutomori**
 
-- GitHub: [Adijat Ojutomori](https://github.com/)
-- LinkedIn: [Adijat Ojutomori](https://www.linkedin.com/in/)
-- Website: [Adijat Ojutomori Porfolio](http://)
+- GitHub: [Adijat Ojutomori](https://github.com/toussyn)
+- LinkedIn: [Adijat Ojutomori](https://www.linkedin.com/in/aojutomori)
+- Website: [Adijat Ojutomori Porfolio](aojutomori@gmail.com)
 
 👤 **Birtukan Kuma**
 
-- GitHub: [Birtukan Kuma](https://github.com/)
-- LinkedIn: [Birtukan Kuma](https://www.linkedin.com/in/)
+- GitHub: [Birtukan Kuma](https://github.com/BirtukanK)
+- LinkedIn: [Birtukan Kuma](https://www.linkedin.com/in/birtukan-gonfa-a6918a205)
 - Website: [Birtukan Kuma Porfolio](http://)
 
 
