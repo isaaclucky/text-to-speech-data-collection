@@ -132,9 +132,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 👤 **Natnael Melese**
 
-- GitHub: [Natnael Melese](https://github.com/)
-- LinkedIn: [Natnael Melese](https://www.linkedin.com/in/)
-- Website: [Natnael Melese Porfolio](https://)
+- GitHub: [Natnael Melese](https://github.com/natyrix)
+- LinkedIn: [Natnael Melese](https://www.linkedin.com/in/natnael-melesse-298879196/)
 
 👤 **Yishak Tadele**
 
