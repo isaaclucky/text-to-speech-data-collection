@@ -162,9 +162,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 👤 **Adijat Ojutomori**
 
-- GitHub: [Adijat Ojutomori](https://github.com/)
-- LinkedIn: [Adijat Ojutomori](https://www.linkedin.com/in/)
-- Website: [Adijat Ojutomori Porfolio](http://)
+- GitHub: [Adijat Ojutomori](https://github.com/toussyn)
+- LinkedIn: [Adijat Ojutomori](https://www.linkedin.com/in/aojutomori)
+- Website: [Adijat Ojutomori Porfolio](aojutomori@gmail.com)
 
 👤 **Birtukan Kuma**
 
