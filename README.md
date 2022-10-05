@@ -168,8 +168,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 👤 **Birtukan Kuma**
 
-- GitHub: [Birtukan Kuma](https://github.com/)
-- LinkedIn: [Birtukan Kuma](https://www.linkedin.com/in/)
+- GitHub: [Birtukan Kuma](https://github.com/BirtukanK)
+- LinkedIn: [Birtukan Kuma](https://www.linkedin.com/in/birtukan-gonfa-a6918a205)
 - Website: [Birtukan Kuma Porfolio](http://)
 
 
