@@ -32,10 +32,17 @@ class Admin(MethodView):
             data = request.json
             topic_name = data.get('topic_name')
             if topic_name:
-                return jsonify({ 
-                    "success": True,
-                    "message": "POST"
-                })
+                if 'g2-' in topic_name:
+                    
+                    return jsonify({ 
+                        "success": True,
+                        "message": f"Topic name {topic_name} created."
+                    })
+                else:
+                    return jsonify({
+                        "success": False,
+                        "message": "Invalid topic name."
+                    })
             else:
                 return jsonify({
                     "success": False,

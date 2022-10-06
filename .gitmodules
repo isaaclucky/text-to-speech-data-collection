@@ -1,0 +1,5 @@
+
+[submodule "text-to-speech-front-end"]
+	path = text-to-speech-front-end
+	url = https://github.com/10AcademyB6Week7/text-to-speech-front-end
+	branch = main
