@@ -1,8 +1,8 @@
 #This is a sample placeholder dag
+
 from __future__ import annotations
 
-# [START tutorial]
-# [START import_module]
+#import module
 from datetime import datetime, timedelta
 from textwrap import dedent
 
