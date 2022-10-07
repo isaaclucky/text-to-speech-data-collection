@@ -1,10 +1,11 @@
 from kafka import KafkaProducer
+from json import dumps
 import pandas as pd
 
 def text_producer():
     producer = KafkaProducer(
     bootstrap_servers=['b-1.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092','b-2.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092'],
-    client_id='g2-text-producer')
+    client_id='g2-text-producer',value_serializer=lambda x: dumps(x).encode('utf-8'))
     data = pd.read_csv('/mnt/10ac-batch-6/notebooks/gedion_abebe/Amharic News Dataset.csv')
     random_text = data.sample(n=1)[["headline","category","article"]]
     random_text.reset_index(drop=True, inplace=True)
