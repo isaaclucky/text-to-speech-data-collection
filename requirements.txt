@@ -59,6 +59,7 @@ six==1.14.0
 sos==4.3
 ssh-import-id==5.10
 systemd-python==234
+testcontainers==3.7.0
 Twisted==18.9.0
 ubuntu-advantage-tools==27.10
 ufw==0.36
