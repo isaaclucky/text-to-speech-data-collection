@@ -4,47 +4,81 @@ from kafka import KafkaConsumer
 from kafka import KafkaProducer
 from json import loads, dumps
 import random 
+import pandas as pd
 from werkzeug.utils import secure_filename
 import os
+from flask_cors import CORS
+from datetime import datetime
 
 app = Flask(__name__)
-app.config["UPLOAD_FOLDER"] = "/mnt/10ac-batch-6/notebooks/gedion_abebe/data"
+app.config["UPLOAD_FOLDER"] = "/mnt/10ac-batch-6/notebooks/natnael_melese/data/"
+# app.config["UPLOAD_FOLDER"] = "/home/natnael_melese/audio_data"
+CORS(app)
 
 @app.route('/get_text', methods=['GET'])
 def get_text():
-    if request.method == "GET": 
-        topics_list = ["g2-national_news","g2-entertainment","g2-business","g2-international_news","g2-politics","g2-sport"]
-        topic = random.choice(topics_list)
-        consumer = KafkaConsumer(
-            topic,
-            bootstrap_servers=['b-1.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092','b-2.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092'],
-            auto_offset_reset='latest',
-            enable_auto_commit=True,
-            group_id='g2-group',
-            value_deserializer=lambda x: loads(x.decode('utf-8')))
-        message = consumer.value
-        return jsonify({
+    
+    try:
+        if request.method == "GET": 
+            print("#####GETTING TEXT#####")
+            data = pd.read_csv('/mnt/10ac-batch-6/notebooks/gedion_abebe/Amharic News Dataset.csv')
+            random_text = data.sample(n=1)[["headline","category","article"]]
+            random_text.reset_index(drop=True, inplace=True)
+            topic_names = {
+                "ሀገር አቀፍ ዜና": "g2-national_news",
+                "መዝናኛ": "g2-entertainment",
+                "ቢዝነስ": "g2-business",
+                "ዓለም አቀፍ ዜና": "g2-international_news",
+                "ፖለቲካ":"g2-politics",
+                "ስፖርት":"g2-sport"
+            }
+
+            return{
                 "status": "success",
-                "headline": message['headline'],
-                "category": message['category'],
-                "article": message['article']})    
+                "topic": topic_names[random_text['category'][0]],
+                "headline": random_text['headline'][0].strip(),
+                "category": random_text['category'][0].strip(),
+                "article":random_text['article'][0].strip()
+            }
+        else:
+            return{
+                "status": "error",
+                "message": f"{request.method} is not allowed"
+            }
+    except Exception as e:
+        return{
+            "status": "error",
+            "message": str(e)
+        }
 
 @app.route('/get_audio', methods=['POST'])
 def get_audio():
-    if request.method == "POST":
-        producer = KafkaProducer(
-                    bootstrap_servers=['b-1.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092','b-2.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092'],
-                    client_id='g2-text-producer',value_serializer=lambda x: dumps(x).encode('utf-8'))
-        headline = request.form.get("headline")
-        article = request.form.get("article")
-        json_id = request.form.get("json_id")
-        audio_file = request.files["audio_file"]
-        if audio_file.filename != '':
-            filename = secure_filename(audio_file.filename)
-            file_path = app.config["UPLOAD_FOLDER"] + filename
-            audio_file.save(app.config['UPLOAD_FOLDER'] + filename)
-            producer.send("g2-audio-output",{"headline":headline,"article":article,"json_id":json_id,"file_path":file_path})
-        return jsonify({"status": "success","file_path":file_path})
+    try:
+        if request.method == "POST":
+            producer = KafkaProducer(
+                        bootstrap_servers=['b-1.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092','b-2.batch6w7.6qsgnf.c19.kafka.us-east-1.amazonaws.com:9092'],
+                        client_id='g2-text-producer',value_serializer=lambda x: dumps(x).encode('utf-8'))
+            headline = request.form.get("headline")
+            article = request.form.get("article")
+            json_id = request.form.get("json_id")
+            audio_file = request.files["file"]
+            if audio_file.filename != '':
+                filename = secure_filename(audio_file.filename)
+                file_path = app.config["UPLOAD_FOLDER"] + filename + f"{datetime.now()}"
+                audio_file.save(file_path)
+                print(file_path)
+                producer.send("g2-audio-output",{"headline":headline,"article":article,"json_id":json_id,"file_path":file_path}).get(timeout=30)
+            return jsonify({"status": "success","file_path":file_path})
+        else:
+            return{
+                "status": "error",
+                "message": f"{request.method} is not allowed"
+            }
+    except Exception as e:
+        return{
+            "status": "error",
+            "message": str(e)
+        }
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 33507))
