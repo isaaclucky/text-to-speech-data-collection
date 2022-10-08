@@ -89,7 +89,7 @@ def return_processed_audio():
     try:
         if request.method == "POST":
             conn = sqlite3.connect('processed_audio.db')
-            json_id = request.form.get_json()["json_id"]
+            json_id = request.get_json()["json_id"]
             cursor = conn.execute("SELECT json_id, headline, article, file_path from Audio where json_id == '{}'".format(json_id))
             for row in cursor:
                 json_id = row[0]
