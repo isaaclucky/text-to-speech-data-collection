@@ -1,36 +1,24 @@
-""" Scripts responsible for logging """
+import logging
 
-import sys, os
-import logging, logging.handlers
-from logging.handlers import TimedRotatingFileHandler
-from pathlib import Path
 
 class App_Logger:
-  """
-  """
-  log_formatter = logging.Formatter(
-      f"%(asctime)s - [%(levelname)s] -  %(name)s - (%(filename)s).%(funcName)s(line %(lineno)d) - %(message)s", datefmt="%d-%m-%Y %H:%M:%S")
 
-  def __init__(self):
-    pass
+    def __init__(self, file_name: str, basic_level=logging.INFO):
+        # Gets or creates a logger
+        logger = logging.getLogger(__name__)
 
-  def get_file_handler(self) -> logging.FileHandler:
-    # create logs folder if it doesn't exist
-    Path("../logs").mkdir(parents=True, exist_ok=True)
-    file_handler = TimedRotatingFileHandler(f"../logs/app.log", when='d')
-    file_handler.setLevel(logging.INFO)
-    file_handler.setFormatter(App_Logger.log_formatter)
-    return file_handler
+        # set log level
+        logger.setLevel(basic_level)
 
-  def get_stream_handler(self) -> logging.StreamHandler:
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.WARNING)
-    stream_handler.setFormatter(App_Logger.log_formatter)
-    return stream_handler
+        # define file handler and set formatter
+        file_handler = logging.FileHandler(file_name)
+        formatter = logging.Formatter(
+            '%(asctime)s : %(levelname)s : %(name)s : %(message)s')
 
-  def get_logger(self, name) -> logging.Logger:
-    self.logger = logging.getLogger(name)
-    self.logger.setLevel(logging.INFO)
-    self.logger.addHandler(self.get_file_handler())
-    self.logger.addHandler(self.get_stream_handler())
-    return self.logger
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+
+        self.logger = logger
+
+    def get_app_logger(self) -> logging.Logger:
+        return self.logger
