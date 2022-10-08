@@ -1,6 +1,10 @@
 from kafka import KafkaProducer
 from json import dumps
 import pandas as pd
+import logging
+
+logging.basicConfig(filename='../log/log.log', filemode='a',encoding='utf-8', level=logging.DEBUG)
+
 
 def text_producer():
     producer = KafkaProducer(
