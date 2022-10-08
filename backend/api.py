@@ -10,6 +10,7 @@ import os
 from flask_cors import CORS
 from datetime import datetime
 import logging
+import sqlite3
 
 logging.basicConfig(filename='../log/log.log', filemode='a',encoding='utf-8', level=logging.DEBUG)
 
@@ -72,6 +73,31 @@ def get_audio():
                 print(file_path)
                 producer.send("g2-audio-output",{"headline":headline,"article":article,"json_id":json_id,"file_path":file_path}).get(timeout=30)
             return jsonify({"status": "success","file_path":file_path})
+        else:
+            return{
+                "status": "error",
+                "message": f"{request.method} is not allowed"
+            }
+    except Exception as e:
+        return{
+            "status": "error",
+            "message": str(e)
+        }
+
+@app.route('/return_processed_audio', methods=['POST'])
+def return_processed_audio():
+    try:
+        if request.method == "POST":
+            conn = sqlite3.connect('processed_audio.db')
+            json_id = request.form.get_json()["json_id"]
+            cursor = conn.execute("SELECT json_id, headline, article, file_path from Audio where json_id == '{}'".format(json_id))
+            for row in cursor:
+                json_id = row[0]
+                headline = row[1]
+                article = row[2]
+                file_path = row[3]
+                audio_file = open("{}".format(file_path), "rb").read()
+                return jsonify({"status": "success","json_id":json_id,"headline":headline,"article":article,"audio_file":audio_file})
         else:
             return{
                 "status": "error",
