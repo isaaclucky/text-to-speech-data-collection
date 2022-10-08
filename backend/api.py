@@ -91,13 +91,23 @@ def return_processed_audio():
             conn = sqlite3.connect('processed_audio.db')
             # json_id = request.get_json()["json_id"]
             cursor = conn.execute("SELECT json_id, headline, article, file_path from Audio")
+            data = []
             for row in cursor:
                 json_id = row[0]
                 headline = row[1]
                 article = row[2]
                 file_path = row[3]
                 audio_file = open("{}".format(file_path), "rb").read()
-                return jsonify({"status": "success","json_id":json_id,"headline":headline,"article":article,"audio_file":audio_file})
+                data.append({
+                    "json_id":json_id,
+                    "headline":headline,
+                    "article":article,
+                    "audio_file":audio_file
+                })
+            return jsonify({
+                "status": "success",
+                "data": data
+            })
         else:
             return{
                 "status": "error",
