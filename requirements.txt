@@ -11,3 +11,4 @@ testcontainers==3.7.0
 urllib3==1.26.12
 websocket-client==1.4.1
 wrapt==1.14.1
+pandas
