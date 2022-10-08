@@ -139,13 +139,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 - GitHub: [Yishak Tadele](https://github.com/isaaclucky)
 - LinkedIn: [Yishak Tadele](https://www.linkedin.com/in/yishak-tadele/)
-- Website: [Yishak Tadele Porfolio](http://yishaktadele.freecluster.eu/)
 
 👤 **Henok Desalegn**
 
 - GitHub: [Henok Desalegn](https://github.com/)
 - LinkedIn: [Henok Desalegn](https://www.linkedin.com/in/henok-desalegn/)
-- Website: [Henok Desalegn Porfolio](http://)
 
 👤 **Gedion Abebe**
 
@@ -157,19 +155,16 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 - GitHub: [Bekalu Tadele](https://github.com/)
 - LinkedIn: [Bekalu Tadele](https://www.linkedin.com/in/)
-- Website: [Bekalu Tadele Porfolio](http://)
 
 👤 **Adijat Ojutomori**
 
 - GitHub: [Adijat Ojutomori](https://github.com/toussyn)
 - LinkedIn: [Adijat Ojutomori](https://www.linkedin.com/in/aojutomori)
-- Website: [Adijat Ojutomori Porfolio](aojutomori@gmail.com)
 
 👤 **Birtukan Kuma**
 
 - GitHub: [Birtukan Kuma](https://github.com/BirtukanK)
 - LinkedIn: [Birtukan Kuma](https://www.linkedin.com/in/birtukan-gonfa-a6918a205)
-- Website: [Birtukan Kuma Porfolio](http://)
 
 
 <!-- ACKNOWLEDGEMENTS -->
