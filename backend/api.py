@@ -9,9 +9,10 @@ from werkzeug.utils import secure_filename
 import os
 from flask_cors import CORS
 from datetime import datetime
-import logging
+# import logging
+import sqlite3
 
-logging.basicConfig(filename='../log/log.log', filemode='a',encoding='utf-8', level=logging.DEBUG)
+# logging.basicConfig(filename='../log/log.log', filemode='a',encoding='utf-8', level=logging.DEBUG)
 
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = "/mnt/10ac-batch-6/notebooks/natnael_melese/data/"
@@ -36,23 +37,23 @@ def get_text():
                 "ስፖርት":"g2-sport"
             }
 
-            return{
+            return jsonify({
                 "status": "success",
                 "topic": topic_names[random_text['category'][0]],
                 "headline": random_text['headline'][0].strip(),
                 "category": random_text['category'][0].strip(),
                 "article":random_text['article'][0].strip()
-            }
+            })
         else:
-            return{
+            return jsonify({
                 "status": "error",
                 "message": f"{request.method} is not allowed"
-            }
+            })
     except Exception as e:
-        return{
+        return jsonify({
             "status": "error",
             "message": str(e)
-        }
+        })
 
 @app.route('/get_audio', methods=['POST'])
 def get_audio():
@@ -70,8 +71,43 @@ def get_audio():
                 file_path = app.config["UPLOAD_FOLDER"] + filename + f"{datetime.now()}"
                 audio_file.save(file_path)
                 print(file_path)
-                producer.send("g2-audio-output",{"headline":headline,"article":article,"json_id":json_id,"file_path":file_path}).get(timeout=30)
+                producer.send("g2-audio-raw",{"headline":headline,"article":article,"json_id":json_id,"file_path":file_path}).get(timeout=30)
             return jsonify({"status": "success","file_path":file_path})
+        else:
+            return{
+                "status": "error",
+                "message": f"{request.method} is not allowed"
+            }
+    except Exception as e:
+        return{
+            "status": "error",
+            "message": str(e)
+        }
+
+@app.route('/return_processed_audio', methods=['POST'])
+def return_processed_audio():
+    try:
+        if request.method == "POST":
+            conn = sqlite3.connect('processed_audio.db')
+            # json_id = request.get_json()["json_id"]
+            cursor = conn.execute("SELECT json_id, headline, article, file_path from Audio")
+            data = []
+            for row in cursor:
+                json_id = row[0]
+                headline = row[1]
+                article = row[2]
+                file_path = row[3]
+                audio_file = open("{}".format(file_path), "rb").read()
+                data.append({
+                    "json_id":json_id,
+                    "headline":headline,
+                    "article":article,
+                    "audio_file":audio_file
+                })
+            return jsonify({
+                "status": "success",
+                "data": data
+            })
         else:
             return{
                 "status": "error",
